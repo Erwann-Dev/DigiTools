@@ -1,9 +1,10 @@
 .header #title {
   text-align: center;
   color : blue;
+  font-size: 4em;
 }
 .container{
-  width: 320px;
+  width: 52.48vh;
   height: 300px;
   margin: 0 auto;
 }
@@ -14,50 +15,50 @@
   clear:both;
 }
 .container .line1 #box1{
-  width: 100px;
-  height: 100PX;
-  margin-right: 10px;
+  width: 16.4vh;
+  height: 16.4vh;
+  margin-right: 1.64vh;
   border-radius: 20%;
   background-color: green;
   float: left;
 }
 .container .line1 #box2{
-  width: 100px;
-  height: 100PX;
-  margin-right: 10px;
+  width: 16.4vh;
+  height: 16.4vh;
+  margin-right: 1.64vh;
   border-radius: 20%;
   background-color: greenyellow;
   float: left;
 }
 .container .line1 #box3{
-  width: 100px;
-  height: 100PX;
+  width: 16.4vh;
+  height: 16.4vh;
   border-radius: 20%;
   background-color: red;
   float: left;
 }
 
 .container .line2 #box4{
-  width: 100px;
-  height: 100PX;
+  width: 16.4vh;
+  height: 16.4vh;
   margin-top: 20px;
-  margin-right: 10px;
+  margin-right: 1.64vh;
   border-radius: 20%;
   background-color: black;
   float: left;
 }
 .container .line2 #box5{
-  width: 100px;
-  height: 100PX;
+  width: 16.4vh;
+  height: 16.4vh;
   margin-top: 20px;
-  margin-right: 10px;
+  margin-right: 1.64vh;
   border-radius: 20%;
   background-color: yellow;
   float: left;
 }
 .container .line2 #box6{
-  width: 100px;
-  height: 100PX;
+  width: 16.4vh;
+  height: 16.4vh;
   margin-top: 20px;
   border-radius: 20%;
   background-color: blue;
