@@ -1,13 +1,209 @@
-#box1{
-  width: 100px;
-  height: 100PX;
-  margin-right: 10px;
-  border-radius: 20%;
-  background-color: green;
-  display: block;
-  text-align: center;
+/* In the editor this pen don't work, because i have some problem with the "eval" function */
+
+@import url(https://fonts.googleapis.com/css?family=Libre+Baskerville:400italic);
+
+/* Un bon fond */
+html {
+	height: 100%;
+	background: black;
+	background: radial-gradient(circle, #2c2d2e 50%, #212324);
+	background-size: cover;
 }
 
-p{
-  font-size: 5em;
+/* Div principale de la calculette */
+#calculette {
+	/* Taille générale */
+	vertical-align: middle;
+	width: 426px;
+	height: 604px;
+	-ms-border-radius: 58px;
+	-o-border-radius: 58px;
+	-moz-border-radius: 58px;
+	-webkit-border-radius: 58px;
+	border-radius: 58px;
+	border: 1px solid #000000;
+	background: rgba(32.43, 210.37, 167.67, 1);
+}
+
+/* Écran */
+.enteteCalculette .ecran {
+	/* Position générale */
+  margin-top: 55px;
+  margin-left: 20px;
+	height: 50px;
+	width: 300px;
+	float: left;
+
+	/* Background de l'écran sur tout les navigateurs */
+	background: linear-gradient(#34546b, #436c89);
+	background: -webkit-gradient(
+		linear,
+		center top,
+		center bottom,
+		from(#34546b),
+		to(#436c89)
+	);
+	background: -webkit-linear-gradient(#34546b, #436c89);
+	background: -moz-linear-gradient(#34546b, #436c89);
+	background: -o-linear-gradient(#34546b, #436c89);
+	background: -ms-linear-gradient(#34546b, #436c89);
+	background: linear-gradient(#34546b, #436c89);
+
+	/* Bord arrondis seulement sur les angles à gauche pour tout les navigateurs */
+	-webkit-border-top-left-radius: 3px;
+	-webkit-border-bottom-left-radius: 3px;
+	-moz-border-radius-topleft: 3px;
+	-moz-border-radius-bottomleft: 3px;
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+
+	/* Effet 3D */
+	box-shadow: 0px 3px 2px 0px #326682;
+
+	/* Typographie de l'écran */
+	font-size: 60px;
+	line-height: 40px;
+	color: white;
+	text-align: right;
+  padding-top: 10px;
+	padding-right: 5px;
+}
+
+/* Tout les caractères dépassant des touches ou de l'écran doivent être invisibles */
+.touchesCalculette,
+.enteteCalculette {
+	overflow: hidden;
+}
+
+/* Touches et écran */
+.touchesCalculette span,
+.enteteCalculette span.reset {
+	position: relative;
+
+	/* Formes générale des touches */
+	float: left;
+	width: 75px;
+	height: 45px;
+	border-radius: 20px;
+	line-height: 35px;
+	text-align: center;
+	margin: 31px 16px 0px 16px;
+
+	/* Arrière plan */
+	background: #c4c4c4;
+
+	/* Pointeur de souris identiques aux lien hypertextes */
+	cursor: pointer;
+
+	/* Effet 3D */
+	box-shadow: 0px 3px 2px 0px #326682;
+
+	/* Pas de selection des caractères des touches */
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: -moz-none;
+	-ms-user-select: none;
+	user-select: none;
+
+	/* Flou CSS3 sur toutes les animations */
+	transition: all 0.2s ease;
+	-webkit-transition: all 0.2s ease-in;
+	-moz-transition: all 0.2s ease-in;
+	-o-transition: all 0.2s ease-in;
+}
+
+/* Gestion particulière de la marge du bouton reset */
+.enteteCalculette span.reset {
+	margin: 0 0px 5px 0;
+}
+
+/* Gestion de tout les opérateurs */
+span.operateurs {
+	/* Suppression des marges à droite des touches d'opérateurs */
+	margin-right: 0px;
+	background-color: #ffe1c1;
+	box-shadow: 0px 3px 2px 0px #326682;
+}
+.touchesCalculette span.egal {
+	background-color: #c4dbc0;
+	box-shadow: 0px 3px 2px 0px #326682;
+}
+.enteteCalculette span.reset {
+	color: white;
+	background-color: #ff6875;
+	box-shadow: 0px 3px 2px 0px #326682;
+  margin-left: 15px;
+  margin-top: 60px;
+}
+
+/* Effet de surbrillance au survol de la souris */
+.touchesCalculette span:hover {
+	background-color: #e2e2e2;
+	box-shadow: 0px 3px 2px 0px #326682;
+}
+span.operateurs:hover {
+	background-color: #ffeec9;
+	box-shadow: 0px 3px 2px 0px #326682;
+}
+.touchesCalculette span.egal:hover {
+	background-color: #def7d9;
+	box-shadow: 0px 3px 2px 0px #326682;
+}
+.enteteCalculette span.reset:hover {
+	background-color: #ffadb5;
+	box-shadow: 0px 3px 2px 0px #326682;
+}
+
+/* Simulation de pression de touche quand on active un bouton */
+.touchesCalculette span:active {
+	top: 2px;
+	box-shadow: 0px 3px 2px 0px #326682;
+}
+span.operateurs:active {
+	top: 2px;
+	box-shadow: 0px 3px 2px 0px #326682;
+}
+.touchesCalculette span.egal:active {
+	top: 2px;
+	box-shadow: 0px 3px 2px 0px #326682;
+}
+.enteteCalculette span.reset:active {
+	top: 2px;
+	box-shadow: 0px 3px 2px 0px #326682;
+}
+
+/* Si on utilise plusieurs fois la même touche d'opérateur */
+.touchesCalculetteErreur {
+	/* Couleur de base de la touche donc background-color:*/
+	animation: animationError 0.2s infinite alternate;
+	-webkit-animation: animationError 0.2s infinite alternate;
+}
+
+@keyframes animationError {
+	/* 0% = defaud background-color */
+	100% {
+		background-color: #f00;
+		background: radial-gradient(circle, #f00 20%, #ccc);
+		background-size: cover;
+	}
+}
+@-webkit-keyframes animationError {
+	/* 0% = defaud background-color */
+	100% {
+		background-color: #f00;
+		background: radial-gradient(circle, #f00 20%, #ccc);
+		background-size: cover;
+	}
+}
+
+.container {
+	width: 426px;
+	height: 604px;
+	-ms-border-radius: 58px;
+	-o-border-radius: 58px;
+	-moz-border-radius: 58px;
+	-webkit-border-radius: 58px;
+	border-radius: 58px;
+	border: 1px solid #000000;
+	background: rgba(32.43, 210.37, 167.67, 1);
 }

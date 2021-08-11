@@ -1,0 +1,13 @@
+#box1{
+  width: 100px;
+  height: 100PX;
+  margin-right: 10px;
+  border-radius: 20%;
+  background-color: green;
+  display: block;
+  text-align: center;
+}
+
+p{
+  font-size: 5em;
+}
