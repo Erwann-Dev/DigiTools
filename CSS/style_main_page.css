@@ -1,9 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
 .header #title {
 	position: relative;
 	text-align: center;
-	color: blue;
+	color: #104F55;
 	font-size: 4em;
 	z-index: 1;
+	font-weight: normal;
+	font-family: 'Bebas Neue', cursive;
+	user-select: none;
 }
 .container {
 	position: relative;
@@ -75,20 +80,28 @@
 	right: 10px;
 	text-align: center;
 	z-index: 1;
+	user-select: none;
 }
 
-#vector_1{
+#vector_1 {
 	width: 40vw;
 	position: fixed;
 	top: 0;
 	right: 0;
 	z-index: 0;
+	user-select: none;
 }
 
-#vector_2{
+#vector_2 {
 	width: 50vw;
 	position: fixed;
 	bottom: 0;
 	left: 0;
 	z-index: 0;
+	user-select: none;
+}
+
+
+body{
+	overflow: hidden;
 }
