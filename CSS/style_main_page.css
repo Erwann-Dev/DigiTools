@@ -1,73 +1,94 @@
 .header #title {
-  text-align: center;
-  color : blue;
-  font-size: 4em;
+	position: relative;
+	text-align: center;
+	color: blue;
+	font-size: 4em;
+	z-index: 1;
 }
-.container{
-  width: 52.48vh;
-  height: 300px;
-  margin: 0 auto;
+.container {
+	position: relative;
+	width: 52.48vh;
+	height: 300px;
+	margin: 0 auto;
+	z-index: 1;
 }
-.line1{
-  float: left;
+.line1 {
+	float: left;
 }
-.line2{
-  clear:both;
+.line2 {
+	clear: both;
 }
-.container .line1 #box1{
-  width: 16.4vh;
-  height: 16.4vh;
-  margin-right: 1.64vh;
-  border-radius: 20%;
-  background-color: green;
-  float: left;
+.container .line1 #box1 {
+	width: 16.4vh;
+	height: 16.4vh;
+	margin-right: 1.64vh;
+	border-radius: 20%;
+	background-color: green;
+	float: left;
 }
-.container .line1 #box2{
-  width: 16.4vh;
-  height: 16.4vh;
-  margin-right: 1.64vh;
-  border-radius: 20%;
-  background-color: greenyellow;
-  float: left;
+.container .line1 #box2 {
+	width: 16.4vh;
+	height: 16.4vh;
+	margin-right: 1.64vh;
+	border-radius: 20%;
+	background-color: greenyellow;
+	float: left;
 }
-.container .line1 #box3{
-  width: 16.4vh;
-  height: 16.4vh;
-  border-radius: 20%;
-  background-color: red;
-  float: left;
-}
-
-.container .line2 #box4{
-  width: 16.4vh;
-  height: 16.4vh;
-  margin-top: 20px;
-  margin-right: 1.64vh;
-  border-radius: 20%;
-  background-color: black;
-  float: left;
-}
-.container .line2 #box5{
-  width: 16.4vh;
-  height: 16.4vh;
-  margin-top: 20px;
-  margin-right: 1.64vh;
-  border-radius: 20%;
-  background-color: yellow;
-  float: left;
-}
-.container .line2 #box6{
-  width: 16.4vh;
-  height: 16.4vh;
-  margin-top: 20px;
-  border-radius: 20%;
-  background-color: blue;
-  float: left;
+.container .line1 #box3 {
+	width: 16.4vh;
+	height: 16.4vh;
+	border-radius: 20%;
+	background-color: red;
+	float: left;
 }
 
-.credit{
-  position: fixed;
-  bottom: 0;
-  right:10px;
-  text-align: center;
+.container .line2 #box4 {
+	width: 16.4vh;
+	height: 16.4vh;
+	margin-top: 20px;
+	margin-right: 1.64vh;
+	border-radius: 20%;
+	background-color: black;
+	float: left;
+}
+.container .line2 #box5 {
+	width: 16.4vh;
+	height: 16.4vh;
+	margin-top: 20px;
+	margin-right: 1.64vh;
+	border-radius: 20%;
+	background-color: yellow;
+	float: left;
+}
+.container .line2 #box6 {
+	width: 16.4vh;
+	height: 16.4vh;
+	margin-top: 20px;
+	border-radius: 20%;
+	background-color: blue;
+	float: left;
+}
+
+.credit {
+	position: fixed;
+	bottom: 0;
+	right: 10px;
+	text-align: center;
+	z-index: 1;
+}
+
+#vector_1{
+	width: 40vw;
+	position: fixed;
+	top: 0;
+	right: 0;
+	z-index: 0;
+}
+
+#vector_2{
+	width: 50vw;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	z-index: 0;
 }
