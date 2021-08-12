@@ -87,6 +87,7 @@ function gererTouches(event) {
 			case 'x':
 			case '/':
 				// On calcule la valeur résultat de l'étape précédente
+				if (!Number.isNaN(Number.parseFloat(affichage)) == false) affichage = 0;
 				precedent =
 					precedent === 0
 						? parseFloat(affichage)
@@ -101,6 +102,8 @@ function gererTouches(event) {
 			case '=':
 			case 'Enter':
 				// On calcule la valeur résultat de l'étape précédente
+				if (!Number.isNaN(Number.parseFloat(affichage)) == false) affichage = 0;
+				console.log(affichage)
 				precedent =
 					precedent === 0
 						? parseFloat(affichage)
