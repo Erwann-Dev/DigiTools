@@ -1,116 +1,114 @@
-/* In the editor this pen don't work, because i have some problem with the "eval" function */
 
-// Obtenir les touches du documents
-var touches = document.querySelectorAll('#calculette span');
+// Elément écran
+const ecranElt = document.querySelector(".ecran");
 
-// Initialisation d'un tableau d'opérateurs.
-var operateurs = ['/', 'x', '-', '+'];
+// On stocke la valeur de l'écran "précédent"
+let precedent = 0;
 
-// Flag : Une décimale a été ajoutée?
-var decimaleAjoute = false;
+// On stocke l'affichage
+let affichage = "";
 
-/* 
- * Ajout dynamique d'une fonction sur les touches : 
- * - Un évênement on click sur toutes les touches qui permettra d'éfféctuer les opérations. 
+// On stocke l'opération
+let operation = null;
+
+window.onload = () => {
+    // On écoute les clics sur les touches
+    let touches = document.querySelectorAll("span");
+
+    for(let touche of touches){
+        touche.addEventListener("click", gererTouches);
+    }
+
+    // On écoute les touches du clavier
+    document.addEventListener("keydown", gererTouches);
+}
+
+/**
+ * Cette fonction réagit au clic sur les touches
  */
-for(var i = 0; i < touches.length; i++) {
-	touches[i].onclick = function(e) {
-	
-		// 1) Obtenir les valeurs des boutons et de l'écran.
-		var ecran = document.querySelector('.ecran');
-		var valeurEcran = ecran.innerHTML;
-		var valeurBouton = this.innerHTML;
-    
-		// 2) Traitement des différents boutons et évaluation finale.
-		
-		// Touche "reset".
-		if(valeurBouton == 'C') {
-			
-			// Reset écran et reset flag decimale.
-			ecran.innerHTML = '';
-			decimaleAjoute = false;
-		
-		// Touche "=".
-		} else	if(valeurBouton == '=') {
-      			
-			// Initialisation de la variable de calcul par rapport
-			// à l'affichage à l'écran.
-			var calcul = valeurEcran;
-			
-			// Obtention du dernier caractère.
-			var dernierCaractere = valeurEcran[valeurEcran.length - 1];
-			
-			// Dans notre variable de calcul : Remplacement de "x" par "*".
-			calcul = calcul.replace(/x/g, '*');
-			
-			// Si le calcul se termine par un "." ou un opérateur, on enlève 
-			// cet opérateur.
-			if(operateurs.indexOf(dernierCaractere) > -1 
-			|| dernierCaractere == '.') {
-				calcul = calcul.replace(/.$/, '');
-			}
-			// Si il y a un calcul : utilisation de Eval pour que l'écran 
-			// change de valeur.
-      
-			if(calcul) {
-				ecran.innerHTML = eval(calcul);
-			}
-			decimaleAjoute = false;
+function gererTouches(event){
+    let touche;
 
-		} else if (operateurs.indexOf(valeurBouton) > -1) {
-			 
-			// Obtention du dernier caractère de l'écran.
-			var dernierCaractere = valeurEcran[valeurEcran.length - 1];
-			
-			// Ajout de l'opérateur seulement si l'écran n'a pas d'opérateur
-			// comme dernier caractère.
-			
-			// Reset l'écran si l'écran vaut "-" et qu'on presse "+".
-			if (valeurEcran == '-' 
-			&& valeurBouton == '+') {
-				ecran.innerHTML = '';
-			} 
-			// Ajout "-" si l'écran est vide et qu'on presse "-".
-			else if (valeurEcran == ''
-			&& valeurBouton == '-') {				
-				ecran.innerHTML = valeurBouton;
-			} 
-			// Si il y a quelque chose dans l'écran et que ce n'est pas -
-			else if (valeurEcran != '' 
-			&& operateurs.indexOf(dernierCaractere) == -1) {
-				ecran.innerHTML += valeurBouton;
-			}
-			
-			// Si un opérateur existait déja à la fin, alors on le remplace
-			// par le nouveau.
-			if (operateurs.indexOf(dernierCaractere) > -1 
-			&& valeurEcran.length > 1) {
-			
-				// Ici, '.$' signifie la fin de  la chaine de caractère,
-				// donc n'importe quel caractère (qui sera un opérateur)
-				// a la fin de l'écran vas être remplacé par le nouveau 
-				// opérateur.
-				ecran.innerHTML = valeurEcran.replace(/.$/, valeurBouton);
-			}
-			
-			decimaleAjoute =false;
-		
-		} else if (valeurBouton == '.') {
-		
-			// maintenant, seulement le problème de décimale est restant. Nous
-			// le resolvons en utilisant un flag quand la décimale est déja 
-			// ajouté. Il sera reset quand un "=" or reset sera préssé.
-			if(!decimaleAjoute) {
-				ecran.innerHTML += valeurBouton;
-				decimaleAjoute = true;
-			}
-		} else {
-      
-			// Si c'est une autre touche que égal, ajout à la suite de l'écran.		
-			ecran.innerHTML += valeurBouton;
-		}
-		
-		// Prevent page jumps
-		e.preventDefault();
-	} 
+    // On liste les touches autorisées
+    const listeTouches = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+", "-", "*","x", "/", ".", "Enter", "Escape"];
+
+    // On vérifie si on a l'évènement "keydown"
+    if(event.type === "keydown"){
+				console.log(event.key)
+				let key = event.key
+				console.log(key)
+        // On compare la touche appuyée aux touches autorisées
+        if(listeTouches.includes(event.key)){
+            // On empêche l'utilisation "par défaut" de la touche
+            event.preventDefault();
+            // On stocke la touche choisie dans la variable touche
+            touche = event.key;
+        }
+    }else{
+        touche = this.innerText;
+    }
+
+    // On vérifie si chiffre ou .
+    if(parseFloat(touche) >= 0 || touche === "."){
+        // A vérifier, pas plusieurs . dans la chaîne
+        // On met à jour la valeur d'affichage et on affiche sur l'écran
+        affichage = (affichage === "") ? touche.toString() : affichage + touche.toString();
+        ecranElt.innerText = affichage;
+    }else{
+        switch(touche){
+            // Touche C réinitialise tout
+            case "C":
+            case "Escape":
+                precedent = 0;
+                affichage = "";
+                operation = null
+                ecranElt.innerText = 0;
+                break;
+            // Calculs
+            case "+":
+            case "-":
+							case "*":
+								case "x":
+            case "/":
+                // On calcule la valeur résultat de l'étape précédente
+                precedent = (precedent === 0) ? parseFloat(affichage) : calculer(precedent, parseFloat(affichage), operation);
+                // On met à jour l'écran
+                ecranElt.innerText = precedent;
+                // On stocke l'opération
+                operation = touche;
+                // On réinitialise la variable d'affichage
+                affichage = "";
+                break;
+            case "=":
+            case "Enter":
+                // On calcule la valeur résultat de l'étape précédente
+                precedent = (precedent === 0) ? parseFloat(affichage) : calculer(precedent, parseFloat(affichage), operation);
+                // On met à jour l'écran
+                ecranElt.innerText = precedent;
+                // On stocke le résultat dans la variable d'affichage
+                affichage = precedent;
+                // On réinitialise précédent
+                precedent = 0;
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+/**
+ * Effectue le calcul
+ * @param {number} nb1 
+ * @param {number} nb2 
+ * @param {string} operation 
+ * @returns number
+ */
+function calculer(nb1, nb2, operation){
+    nb1 = parseFloat(nb1);
+    nb2 = parseFloat(nb2);
+    if(operation === "+") return nb1 + nb2;
+    if(operation === "-") return nb1 - nb2;
+    if(operation === "*") return nb1 * nb2;
+    if(operation === "x") return nb1 * nb2;
+    if(operation === "/") return nb1 / nb2;
 }
