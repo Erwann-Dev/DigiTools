@@ -23,6 +23,10 @@ html {
 	border-radius: 58px;
 	border: 1px solid #000000;
 	background: rgba(32.43, 210.37, 167.67, 1);
+	position: relative;
+	top: 50%;
+	transform: perspective(1px) translateY(-50%);
+  margin: 0 auto;
 }
 
 /* Écran */
@@ -210,4 +214,8 @@ span.operateurs:active {
 	border-radius: 58px;
 	border: 1px solid #000000;
 	background: rgba(32.43, 210.37, 167.67, 1);
+  position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }

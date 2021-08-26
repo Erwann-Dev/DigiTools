@@ -67,9 +67,13 @@ function gererTouches(event) {
 	if (parseFloat(touche) >= 0 || touche === '.') {
 		// A vérifier, pas plusieurs . dans la chaîne
 		// On met à jour la valeur d'affichage et on affiche sur l'écran
-		affichage =
-			affichage === '' ? touche.toString() : affichage + touche.toString();
-		ecranElt.innerText = affichage;
+		if (affichage.length >= 9) {
+			affichage = affichage;
+		} else {
+			affichage =
+				affichage === '' ? touche.toString() : affichage + touche.toString();
+			ecranElt.innerText = affichage;
+		}
 	} else {
 		switch (touche) {
 			// Touche C réinitialise tout
@@ -103,17 +107,24 @@ function gererTouches(event) {
 			case 'Enter':
 				// On calcule la valeur résultat de l'étape précédente
 				if (!Number.isNaN(Number.parseFloat(affichage)) == false) affichage = 0;
-				console.log(affichage)
 				precedent =
 					precedent === 0
 						? parseFloat(affichage)
 						: calculer(precedent, parseFloat(affichage), operation);
 				// On met à jour l'écran
-				ecranElt.innerText = precedent;
-				// On stocke le résultat dans la variable d'affichage
-				affichage = precedent;
+				test = precedent.toString();
+				if (test.length > 9) {
+					ecranElt.innerText = 'ERROR';
+					alert('Erreur le calcul a effectuer est trop grand');
+				} else {
+					ecranElt.innerText = precedent;
+					// On stocke le résultat dans la variable d'affichage
+					affichage = precedent;
+				}
+
 				// On réinitialise précédent
 				precedent = 0;
+
 				break;
 			default:
 				break;
