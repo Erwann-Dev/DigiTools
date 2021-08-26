@@ -97,11 +97,20 @@ function gererTouches(event) {
 						? parseFloat(affichage)
 						: calculer(precedent, parseFloat(affichage), operation);
 				// On met à jour l'écran
-				ecranElt.innerText = precedent;
-				// On stocke l'opération
-				operation = touche;
-				// On réinitialise la variable d'affichage
-				affichage = '';
+				if (precedent.toString().length > 9) {
+					alert('Erreur le calcul a effectuer est trop grand');
+					precedent = 0;
+					affichage = '';
+					operation = null;
+					ecranElt.innerText = 0;
+					break;
+				} else {
+					ecranElt.innerText = precedent;
+					// On stocke l'opération
+					operation = touche;
+					// On réinitialise la variable d'affichage
+					affichage = '';
+				}
 				break;
 			case '=':
 			case 'Enter':
@@ -112,10 +121,13 @@ function gererTouches(event) {
 						? parseFloat(affichage)
 						: calculer(precedent, parseFloat(affichage), operation);
 				// On met à jour l'écran
-				test = precedent.toString();
-				if (test.length > 9) {
-					ecranElt.innerText = 'ERROR';
+				if (precedent.toString().length > 9) {
 					alert('Erreur le calcul a effectuer est trop grand');
+					precedent = 0;
+					affichage = '';
+					operation = null;
+					ecranElt.innerText = 0;
+					break;
 				} else {
 					ecranElt.innerText = precedent;
 					// On stocke le résultat dans la variable d'affichage
